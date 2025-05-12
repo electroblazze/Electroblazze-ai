@@ -58,8 +58,8 @@ export default function MessageInput({ onSendMessage, isGenerating }: MessageInp
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-10 bg-white/90 backdrop-blur-lg border-t border-gray-200 px-4 py-4 shadow-lg">
-      <div className="max-w-3xl mx-auto">
+    <div className="fixed bottom-0 left-0 right-0 z-10 bg-white/90 backdrop-blur-lg border-t border-gray-200 px-4 py-4 shadow-lg flex justify-center">
+      <div className="w-full max-w-4xl">
         <form onSubmit={handleSubmit} className="relative">
           <div className={cn(
             "transition-all duration-300 ease-in-out rounded-2xl",

@@ -57,8 +57,8 @@ export default function Home() {
         onClearChat={handleClearChat} 
       />
       
-      <div className="flex-1 flex overflow-hidden">
-        <main className="flex-1 flex flex-col relative pb-32">
+      <div className="flex-1 flex overflow-hidden justify-center">
+        <main className="w-full max-w-4xl flex flex-col relative pb-32">
           <MessageList 
             messages={messages} 
             isGenerating={isGenerating} 
