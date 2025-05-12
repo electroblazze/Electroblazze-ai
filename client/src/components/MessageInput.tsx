@@ -32,10 +32,21 @@ export default function MessageInput({ onSendMessage, isGenerating }: MessageInp
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(e.target.value);
     
-    // Auto-resize textarea
+    // Auto-resize textarea with better scrolling behavior
     if (textareaRef.current) {
+      // Reset height to auto first to properly calculate new height
       textareaRef.current.style.height = "auto";
-      textareaRef.current.style.height = `${Math.min(textareaRef.current.scrollHeight, 200)}px`;
+      
+      // Set a min-height of 56px and max of 200px
+      const newHeight = Math.min(Math.max(56, textareaRef.current.scrollHeight), 200);
+      textareaRef.current.style.height = `${newHeight}px`;
+      
+      // If content is larger than max height, enable scrolling
+      if (textareaRef.current.scrollHeight > 200) {
+        textareaRef.current.style.overflowY = "auto";
+      } else {
+        textareaRef.current.style.overflowY = "hidden";
+      }
     }
   };
 
@@ -128,7 +139,7 @@ export default function MessageInput({ onSendMessage, isGenerating }: MessageInp
         
         <div className="flex items-center justify-center mt-3 space-x-1 text-xs text-muted-foreground">
           <Sparkles className="h-3 w-3 text-accent" />
-          <span>powered by electroblazze • Llama 3.1 Nemotron Ultra (253B)</span>
+          <span>powered by electroblazze</span>
         </div>
       </div>
     </div>

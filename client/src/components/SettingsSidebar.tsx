@@ -288,7 +288,7 @@ export default function SettingsSidebar({
             <span>Reset to Defaults</span>
           </Button>
           <p className="text-xs text-muted-foreground mt-3 text-center">
-            powered by electroblazze • Llama 3.1 Nemotron Ultra (253B)
+            powered by electroblazze
           </p>
         </div>
       </div>
