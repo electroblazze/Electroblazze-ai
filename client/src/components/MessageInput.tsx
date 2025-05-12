@@ -1,10 +1,11 @@
-import { useState, useRef, FormEvent, ChangeEvent, KeyboardEvent } from "react";
+import { useState, useRef, FormEvent, ChangeEvent, KeyboardEvent, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { 
-  SendIcon, Sparkles, Cpu, Mic, ImagePlus, Wand2
+  SendIcon, Sparkles, Cpu, Mic, ImagePlus, Wand2, MicOff
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
 
 interface MessageInputProps {
   onSendMessage: (message: string) => void;
@@ -15,10 +16,113 @@ export default function MessageInput({ onSendMessage, isGenerating }: MessageInp
   const [message, setMessage] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [isFocused, setIsFocused] = useState(false);
+  const [isListening, setIsListening] = useState(false);
+  const [isVoiceSupported, setIsVoiceSupported] = useState(false);
+  const { toast } = useToast();
+  
+  // Reference to store recognition instance
+  const recognitionRef = useRef<any>(null);
+  
+  // Initialize speech recognition if supported
+  useEffect(() => {
+    // Check if browser supports the Web Speech API
+    const SpeechRecognition = window.SpeechRecognition || 
+                             (window as any).webkitSpeechRecognition;
+    
+    if (SpeechRecognition) {
+      setIsVoiceSupported(true);
+      recognitionRef.current = new SpeechRecognition();
+      
+      // Configure speech recognition
+      const recognition = recognitionRef.current;
+      recognition.continuous = true;
+      recognition.interimResults = true;
+      recognition.lang = 'en-US';
+      
+      // Handle speech recognition results
+      recognition.onresult = (event: any) => {
+        // Get the latest result
+        const transcript = Array.from(event.results)
+          .map((result: any) => result[0])
+          .map((result: any) => result.transcript)
+          .join('');
+        
+        setMessage(transcript);
+        
+        // Auto-resize the textarea
+        if (textareaRef.current) {
+          textareaRef.current.style.height = "auto";
+          const newHeight = Math.min(Math.max(56, textareaRef.current.scrollHeight), 200);
+          textareaRef.current.style.height = `${newHeight}px`;
+        }
+      };
+      
+      // Handle speech recognition end
+      recognition.onend = () => {
+        setIsListening(false);
+      };
+      
+      // Handle speech recognition errors
+      recognition.onerror = (event: any) => {
+        console.error('Speech recognition error', event.error);
+        setIsListening(false);
+        
+        toast({
+          title: "Voice Input Error",
+          description: `Error: ${event.error}. Please try again.`,
+          variant: "destructive",
+        });
+      };
+    }
+    
+    // Cleanup on component unmount
+    return () => {
+      if (recognitionRef.current) {
+        recognitionRef.current.stop();
+      }
+    };
+  }, [toast]);
+  
+  // Toggle speech recognition
+  const toggleListening = () => {
+    if (!isVoiceSupported) {
+      toast({
+        title: "Voice Input Not Supported",
+        description: "Your browser doesn't support voice input. Try Chrome or Edge.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    if (isListening) {
+      // Stop listening
+      recognitionRef.current?.stop();
+      setIsListening(false);
+    } else {
+      // Start listening
+      recognitionRef.current?.start();
+      setIsListening(true);
+      
+      // Focus the textarea
+      textareaRef.current?.focus();
+      
+      toast({
+        title: "Voice Input Activated",
+        description: "Speak now. Click the microphone again to stop.",
+        variant: "default",
+      });
+    }
+  };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (message.trim() && !isGenerating) {
+      // Stop listening if active
+      if (isListening) {
+        recognitionRef.current?.stop();
+        setIsListening(false);
+      }
+      
       onSendMessage(message);
       setMessage("");
       
@@ -91,10 +195,20 @@ export default function MessageInput({ onSendMessage, isGenerating }: MessageInp
                   type="button"
                   size="icon"
                   variant="ghost"
-                  className="w-8 h-8 rounded-full text-muted-foreground hover:text-accent hover:bg-accent/10 transition-colors"
+                  onClick={toggleListening}
+                  className={cn(
+                    "w-8 h-8 rounded-full transition-colors",
+                    isListening 
+                      ? "bg-accent/20 text-accent animate-pulse" 
+                      : "text-muted-foreground hover:text-accent hover:bg-accent/10"
+                  )}
                   disabled={isGenerating}
                 >
-                  <Mic className="h-4 w-4" />
+                  {isListening ? (
+                    <MicOff className="h-4 w-4" />
+                  ) : (
+                    <Mic className="h-4 w-4" />
+                  )}
                 </Button>
                 <Button
                   type="button"

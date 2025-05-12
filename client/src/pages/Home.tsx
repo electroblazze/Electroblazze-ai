@@ -54,14 +54,16 @@ export default function Home() {
 
       <ChatHeader 
         onToggleSettings={toggleSettings} 
-        onClearChat={handleClearChat} 
+        onClearChat={handleClearChat}
+        messages={messages}
       />
       
       <div className="flex-1 flex overflow-hidden justify-center">
         <main className="w-full max-w-4xl flex flex-col relative pb-32">
           <MessageList 
             messages={messages} 
-            isGenerating={isGenerating} 
+            isGenerating={isGenerating}
+            onSendMessage={sendMessage}
           />
         </main>
       </div>
