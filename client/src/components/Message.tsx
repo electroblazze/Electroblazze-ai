@@ -1,5 +1,6 @@
 import { Message as MessageType } from "@/lib/types";
 import { formatMessageContent } from "@/lib/utils";
+import { User, BrainCircuit, Sparkles } from "lucide-react";
 
 interface MessageProps {
   message: MessageType;
@@ -10,73 +11,52 @@ export default function Message({ message }: MessageProps) {
 
   return (
     <div
-      className={`animate-fade-in flex items-start space-x-3 max-w-3xl mx-auto ${
+      className={`animate-slide-up flex items-start space-x-4 max-w-3xl mx-auto mb-6 ${
         message.role === "user" ? "justify-end" : ""
       }`}
     >
       {message.role === "user" ? (
         <>
           <div className="flex-1 text-right">
-            <div className="bg-userMessage text-gray-800 rounded-2xl px-4 py-3 shadow-sm inline-block">
+            <div className="user-message rounded-2xl rounded-tr-sm px-5 py-3.5 shadow-md inline-block transition-all hover:shadow-lg">
               <div 
+                className="prose prose-sm max-w-none"
                 dangerouslySetInnerHTML={{ 
                   __html: formatMessageContent(message.content) 
                 }} 
               />
             </div>
-            <div className="text-xs text-gray-500 mt-1 mr-2">You • Just now</div>
+            <div className="flex items-center justify-end mt-2 mr-2 space-x-1">
+              <span className="text-xs text-muted-foreground">You</span>
+              <span className="inline-block w-1 h-1 rounded-full bg-muted-foreground"></span>
+              <span className="text-xs text-muted-foreground">Just now</span>
+            </div>
           </div>
-          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-600">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-              <circle cx="12" cy="7" r="4" />
-            </svg>
+          <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r from-secondary/80 to-secondary shadow-md flex items-center justify-center border-2 border-white">
+            <User className="h-5 w-5 text-white" />
           </div>
         </>
       ) : (
         <>
-          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-white"
-            >
-              <path d="M12 8V4H8" />
-              <rect width="16" height="12" x="4" y="8" rx="2" />
-              <path d="M2 14h2" />
-              <path d="M20 14h2" />
-              <path d="M15 13v2" />
-              <path d="M9 13v2" />
-            </svg>
+          <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r from-primary to-secondary shadow-md glow-effect flex items-center justify-center border-2 border-white">
+            <BrainCircuit className="h-5 w-5 text-white" />
           </div>
           <div className="flex-1">
-            <div className="bg-aiMessage rounded-2xl px-4 py-3 shadow-sm">
+            <div className="ai-message rounded-2xl rounded-tl-sm px-5 py-3.5 shadow-md relative transition-all hover:shadow-lg">
               <div 
-                className="text-gray-800"
+                className="prose prose-sm max-w-none"
                 dangerouslySetInnerHTML={{ 
                   __html: formatMessageContent(message.content) 
                 }} 
               />
+              <div className="absolute -top-3 -left-3">
+                <Sparkles className="h-5 w-5 text-accent animate-pulse opacity-70" />
+              </div>
             </div>
-            <div className="text-xs text-gray-500 mt-1 ml-2">
-              Nemotron Ultra • Just now
+            <div className="flex items-center mt-2 ml-2 space-x-1">
+              <span className="text-xs font-medium bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary animate-gradient">Nemotron Ultra</span>
+              <span className="inline-block w-1 h-1 rounded-full bg-muted-foreground"></span>
+              <span className="text-xs text-muted-foreground">Just now</span>
             </div>
           </div>
         </>

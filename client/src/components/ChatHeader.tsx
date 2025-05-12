@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Sliders, Trash2 } from "lucide-react";
+import { Sliders, Trash2, Sparkles, BrainCircuit } from "lucide-react";
 
 interface ChatHeaderProps {
   onToggleSettings: () => void;
@@ -8,50 +8,50 @@ interface ChatHeaderProps {
 
 export default function ChatHeader({ onToggleSettings, onClearChat }: ChatHeaderProps) {
   return (
-    <header className="bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between shadow-sm">
-      <div className="flex items-center space-x-2">
-        <div className="bg-gradient-to-r from-primary to-secondary p-2 rounded-lg">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="text-white"
-          >
-            <path d="M12 8V4H8" />
-            <rect width="16" height="12" x="4" y="8" rx="2" />
-            <path d="M2 14h2" />
-            <path d="M20 14h2" />
-            <path d="M15 13v2" />
-            <path d="M9 13v2" />
-          </svg>
-        </div>
-        <h1 className="font-bold text-xl text-gray-800">NemoChat</h1>
-        <span className="bg-blue-100 text-blue-800 text-xs px-2 py-0.5 rounded-full font-medium">
-          Beta
-        </span>
-      </div>
+    <header className="bg-white/90 backdrop-blur-md border-b border-gray-200 px-6 py-4 flex items-center justify-between shadow-md sticky top-0 z-10">
       <div className="flex items-center space-x-3">
+        <div className="bg-gradient-to-r from-primary to-secondary p-2.5 rounded-xl animate-pulse-slow glow-effect">
+          <BrainCircuit 
+            className="text-white h-6 w-6" 
+          />
+        </div>
+        <div>
+          <h1 className="font-extrabold text-2xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary animate-gradient">
+            NemoChat
+          </h1>
+          <div className="flex items-center space-x-2 mt-0.5">
+            <div className="relative">
+              <span className="bg-gradient-to-r from-accent to-primary text-white text-xs px-2.5 py-0.5 rounded-full font-semibold inline-flex items-center">
+                <Sparkles className="h-3 w-3 mr-1 animate-pulse" />
+                Ultra
+              </span>
+              <span className="absolute -top-1 -right-1 flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+              </span>
+            </div>
+            <span className="text-xs text-muted-foreground">Powered by Llama 3.1 Nemotron (253B)</span>
+          </div>
+        </div>
+      </div>
+      <div className="flex items-center space-x-2">
         <Button
-          variant="ghost"
-          size="icon"
+          variant="outline"
+          size="sm"
           onClick={onToggleSettings}
-          className="text-gray-500 hover:text-gray-700 transition-colors"
+          className="flex items-center space-x-1 rounded-lg border-gray-200 shadow-sm hover:bg-gray-50 hover:shadow transition-all duration-300"
         >
-          <Sliders className="h-5 w-5" />
+          <Sliders className="h-4 w-4 text-primary" />
+          <span>Settings</span>
         </Button>
         <Button
-          variant="ghost"
-          size="icon"
+          variant="outline"
+          size="sm"
           onClick={onClearChat}
-          className="text-gray-500 hover:text-gray-700 transition-colors"
+          className="flex items-center space-x-1 rounded-lg border-gray-200 shadow-sm hover:bg-gray-50 hover:shadow transition-all duration-300"
         >
-          <Trash2 className="h-5 w-5" />
+          <Trash2 className="h-4 w-4 text-accent" />
+          <span>Clear</span>
         </Button>
       </div>
     </header>
