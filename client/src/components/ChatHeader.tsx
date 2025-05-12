@@ -59,30 +59,20 @@ export default function ChatHeader({ onToggleSettings, onClearChat, messages = [
   };
   
   return (
-    <header className="bg-white/90 backdrop-blur-md border-b border-gray-200 px-6 py-4 flex items-center justify-center shadow-md sticky top-0 z-10">
+    <header className="bg-white/95 backdrop-blur-md border-b border-gray-100 px-6 py-3 flex items-center justify-center shadow-sm sticky top-0 z-10">
       <div className="w-full max-w-4xl flex items-center justify-between">
         <div className="flex items-center space-x-3">
-          <div className="bg-gradient-to-r from-primary to-secondary p-2.5 rounded-xl animate-pulse-slow glow-effect">
+          <div className="bg-indigo-600 p-2 rounded-full">
             <BrainCircuit 
-              className="text-white h-6 w-6" 
+              className="text-white h-5 w-5" 
             />
           </div>
           <div>
-            <h1 className="font-extrabold text-2xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary animate-gradient">
-              Abhimanyu
+            <h1 className="font-bold text-xl text-indigo-600">
+              Abhimanyu AI
             </h1>
-            <div className="flex items-center space-x-2 mt-0.5">
-              <div className="relative">
-                <span className="bg-gradient-to-r from-accent to-primary text-white text-xs px-2.5 py-0.5 rounded-full font-semibold inline-flex items-center">
-                  <Sparkles className="h-3 w-3 mr-1 animate-pulse" />
-                  AI
-                </span>
-                <span className="absolute -top-1 -right-1 flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
-                </span>
-              </div>
-              <span className="text-xs text-muted-foreground">powered by electroblazze</span>
+            <div className="flex items-center space-x-2 mt-0">
+              <span className="text-xs text-gray-500">Just now</span>
             </div>
           </div>
         </div>
