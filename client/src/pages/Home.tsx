@@ -26,34 +26,24 @@ export default function Home() {
   // Predefined message suggestions
   const messageSuggestions = [
     {
-      icon: <BookOpen className="h-5 w-5 text-blue-500" />,
-      text: "Explain quantum computing to a 10-year-old",
-      category: "Learning"
+      icon: <Lightbulb className="h-5 w-5 text-blue-500" />,
+      text: "Can you help me brainstorm creative ideas for a digital art project?",
+      category: "Brainstorm Ideas"
     },
     {
-      icon: <Code className="h-5 w-5 text-emerald-500" />,
-      text: "Help me debug this React code snippet: useEffect(() => {}, [])",
-      category: "Coding"
+      icon: <BookOpen className="h-5 w-5 text-purple-500" />,
+      text: "Can you explain how machine learning works in simple terms?",
+      category: "Explain a Concept"
     },
     {
-      icon: <Lightbulb className="h-5 w-5 text-yellow-500" />,
-      text: "Generate a creative story about a time-traveling scientist",
-      category: "Creative"
+      icon: <Code className="h-5 w-5 text-indigo-500" />,
+      text: "Help me write a professional email to reschedule a business meeting.",
+      category: "Draft Content"
     },
     {
-      icon: <Archive className="h-5 w-5 text-purple-500" />,
-      text: "Summarize the history of artificial intelligence",
-      category: "Knowledge"
-    },
-    {
-      icon: <Palette className="h-5 w-5 text-pink-500" />,
-      text: "Describe five painting techniques for beginners",
-      category: "Art"
-    },
-    {
-      icon: <GraduationCap className="h-5 w-5 text-orange-500" />,
-      text: "What are the key theories in modern psychology?",
-      category: "Education"
+      icon: <Archive className="h-5 w-5 text-teal-500" />,
+      text: "What are some strategies for improving productivity when working from home?",
+      category: "Problem Solving"
     },
   ];
   
@@ -108,52 +98,76 @@ export default function Home() {
       <div className="flex-1 flex overflow-hidden justify-center">
         <main className="w-full max-w-4xl flex flex-col relative pb-32">
           {messages.length === 0 ? (
-            <div className="flex-1 flex flex-col items-center justify-center p-6 animate-fade-in">
-              <div className="mb-8 text-center">
-                <div className="relative inline-block mb-4">
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full blur-xl opacity-50 animate-pulse-slow"></div>
-                  <div className="relative bg-gradient-to-r from-primary to-secondary p-4 rounded-full inline-flex items-center justify-center glow-effect">
-                    <BrainCircuit className="text-white h-10 w-10" />
+            <div className="flex-1 flex flex-col p-6 animate-fade-in max-w-3xl mx-auto">
+              <div className="mb-8">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full blur-md opacity-50 animate-pulse-slow"></div>
+                    <div className="relative bg-gradient-to-r from-primary to-secondary p-3 rounded-full flex items-center justify-center glow-effect">
+                      <BrainCircuit className="text-white h-7 w-7" />
+                    </div>
+                  </div>
+                  <div>
+                    <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary animate-gradient">
+                      Welcome to Abhimanyu AI
+                    </h1>
+                    <p className="text-muted-foreground text-sm">
+                      Your intelligent conversation partner
+                    </p>
                   </div>
                 </div>
-                <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary mb-2 animate-gradient">
-                  Welcome to Abhimanyu
-                </h1>
-                <p className="text-muted-foreground max-w-lg mx-auto">
-                  Your advanced AI assistant, ready to help with a wide range of tasks. 
-                  Just start typing or choose one of the suggestions below.
+                <p className="text-base mb-8">
+                  I'm here to help with a wide range of tasks - from answering questions and generating content to
+                  brainstorming ideas and solving problems.
                 </p>
+                
+                <div className="mb-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Sparkles className="h-4 w-4 text-primary" />
+                    <span className="text-sm font-medium">Try asking about...</span>
+                  </div>
+                </div>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full max-w-2xl mb-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full mb-6">
                 {messageSuggestions.map((suggestion, index) => (
-                  <Card 
+                  <div
                     key={index}
-                    className="p-4 border border-gray-200 hover:border-primary/30 hover:shadow-md transition-all duration-300 cursor-pointer group"
+                    className="rounded-lg border border-gray-200 hover:border-primary/40 hover:shadow-md transition-all duration-300 cursor-pointer group"
                     onClick={() => sendMessage(suggestion.text)}
                   >
-                    <div className="flex items-start space-x-3">
-                      <div className="p-2 bg-gray-50 rounded-md group-hover:bg-primary/10 transition-colors">
-                        {suggestion.icon}
-                      </div>
+                    <div className="flex items-start p-4">
+                      {index === 0 && (
+                        <div className="flex-shrink-0 bg-blue-100 rounded-lg p-2 mr-3">
+                          <Lightbulb className="h-5 w-5 text-blue-600" />
+                        </div>
+                      )}
+                      {index === 1 && (
+                        <div className="flex-shrink-0 bg-purple-100 rounded-lg p-2 mr-3">
+                          <BookOpen className="h-5 w-5 text-purple-600" />
+                        </div>
+                      )}
+                      {index === 2 && (
+                        <div className="flex-shrink-0 bg-indigo-100 rounded-lg p-2 mr-3">
+                          <Code className="h-5 w-5 text-indigo-600" />
+                        </div>
+                      )}
+                      {index === 3 && (
+                        <div className="flex-shrink-0 bg-teal-100 rounded-lg p-2 mr-3">
+                          <Archive className="h-5 w-5 text-teal-600" />
+                        </div>
+                      )}
                       <div className="flex-1">
-                        <div className="text-xs text-muted-foreground mb-1">
+                        <div className="text-sm font-medium text-gray-900 mb-1">
                           {suggestion.category}
                         </div>
-                        <div className="text-sm font-medium">
+                        <div className="text-xs text-gray-500 line-clamp-2">
                           {suggestion.text}
                         </div>
                       </div>
                     </div>
-                  </Card>
+                  </div>
                 ))}
-              </div>
-              
-              <div className="text-center">
-                <div className="inline-flex items-center space-x-2 bg-accent/10 text-accent px-3 py-2 rounded-lg text-sm">
-                  <Rocket className="h-4 w-4" />
-                  <span>Powered by state-of-the-art AI technology</span>
-                </div>
               </div>
             </div>
           ) : (
