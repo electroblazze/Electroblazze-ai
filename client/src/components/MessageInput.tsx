@@ -58,7 +58,7 @@ export default function MessageInput({ onSendMessage, isGenerating }: MessageInp
   };
 
   return (
-    <div className="sticky bottom-0 z-10 bg-white/80 backdrop-blur-lg border-t border-gray-200 px-4 py-4">
+    <div className="fixed bottom-0 left-0 right-0 z-10 bg-white/90 backdrop-blur-lg border-t border-gray-200 px-4 py-4 shadow-lg">
       <div className="max-w-3xl mx-auto">
         <form onSubmit={handleSubmit} className="relative">
           <div className={cn(

@@ -45,7 +45,7 @@ export default function Home() {
   return (
     <div className="relative min-h-screen flex flex-col">
       {/* Decorative background */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
+      <div className="fixed inset-0 -z-10 overflow-hidden">
         <div className="absolute -top-[40%] -left-[10%] w-[70%] h-[70%] rounded-full bg-primary/5 blur-3xl"></div>
         <div className="absolute -bottom-[30%] -right-[10%] w-[60%] h-[60%] rounded-full bg-secondary/5 blur-3xl"></div>
         <div className="absolute top-[20%] right-[10%] w-[40%] h-[40%] rounded-full bg-accent/5 blur-3xl"></div>
@@ -58,18 +58,18 @@ export default function Home() {
       />
       
       <div className="flex-1 flex overflow-hidden">
-        <main className="flex-1 flex flex-col relative">
+        <main className="flex-1 flex flex-col relative pb-32">
           <MessageList 
             messages={messages} 
             isGenerating={isGenerating} 
           />
-          
-          <MessageInput 
-            onSendMessage={sendMessage} 
-            isGenerating={isGenerating} 
-          />
         </main>
       </div>
+      
+      <MessageInput 
+        onSendMessage={sendMessage} 
+        isGenerating={isGenerating} 
+      />
       
       <SettingsSidebar 
         isOpen={settingsOpen} 

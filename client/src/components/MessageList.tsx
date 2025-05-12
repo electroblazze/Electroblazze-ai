@@ -22,7 +22,7 @@ export default function MessageList({ messages, isGenerating }: MessageListProps
 
   return (
     <ScrollArea className="flex-1 p-4">
-      <div className="space-y-4 max-w-3xl mx-auto">
+      <div className="space-y-4 max-w-3xl mx-auto pb-20">
         {messages.map((message, index) => (
           <Message key={index} message={message} />
         ))}
