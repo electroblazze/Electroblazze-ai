@@ -22,22 +22,22 @@ export default function Home() {
   // Predefined message suggestions
   const messageSuggestions = [
     {
-      icon: <Lightbulb className="h-5 w-5 text-blue-500" />,
+      icon: <Lightbulb className={styles.suggestionIcon} />,
       text: "Can you help me brainstorm creative ideas for a digital art project?",
       category: "Brainstorm Ideas"
     },
     {
-      icon: <BookOpen className="h-5 w-5 text-purple-500" />,
+      icon: <BookOpen className={styles.suggestionIcon} />,
       text: "Can you explain how machine learning works in simple terms?",
       category: "Explain a Concept"
     },
     {
-      icon: <Code className="h-5 w-5 text-indigo-500" />,
+      icon: <Code className={styles.suggestionIcon} />,
       text: "Help me write a professional email to reschedule a business meeting.",
       category: "Draft Content"
     },
     {
-      icon: <Archive className="h-5 w-5 text-teal-500" />,
+      icon: <Archive className={styles.suggestionIcon} />,
       text: "What are some strategies for improving productivity when working from home?",
       category: "Problem Solving"
     },
@@ -82,20 +82,6 @@ export default function Home() {
         <div className={styles.backgroundBlur1}></div>
         <div className={styles.backgroundBlur2}></div>
         <div className={styles.backgroundGrid}></div>
-        
-        {/* Side elements (left) */}
-        <div className={styles.leftSideElement}>
-          <div className={styles.leftIcon}>
-            <Lightbulb className="h-5 w-5" />
-          </div>
-        </div>
-        
-        {/* Side elements (right) */}
-        <div className={styles.rightSideElement}>
-          <div className={styles.rightIcon}>
-            <Code className="h-5 w-5" />
-          </div>
-        </div>
       </div>
 
       <ChatHeader 
@@ -141,69 +127,23 @@ export default function Home() {
               
               {/* Suggestion cards - 2x2 grid */}
               <div className={styles.suggestionsGrid}>
-                {/* Brainstorm Ideas */}
-                <div 
-                  className={styles.suggestionCard} 
-                  onClick={() => sendMessage(messageSuggestions[0].text)}
-                >
-                  <div className={styles.suggestionContent}>
-                    <div className={styles.suggestionInfo}>
-                      <div className={styles.suggestionTitle}>Brainstorm Ideas</div>
-                      <div className={styles.suggestionDescription}>Can you help me brainstorm creative ideas for a digital art project?</div>
+                {messageSuggestions.map((suggestion, index) => (
+                  <div 
+                    key={index}
+                    className={styles.suggestionCard} 
+                    onClick={() => sendMessage(suggestion.text)}
+                  >
+                    <div className={styles.suggestionContent}>
+                      <div className={styles.suggestionInfo}>
+                        <div className={styles.suggestionTitle}>{suggestion.category}</div>
+                        <div className={styles.suggestionDescription}>{suggestion.text}</div>
+                      </div>
+                    </div>
+                    <div className={styles.suggestionIconContainer}>
+                      {suggestion.icon}
                     </div>
                   </div>
-                  <div className={styles.suggestionIconContainer}>
-                    <Lightbulb className={styles.suggestionIcon} />
-                  </div>
-                </div>
-                
-                {/* Explain a Concept */}
-                <div 
-                  className={styles.suggestionCard} 
-                  onClick={() => sendMessage(messageSuggestions[1].text)}
-                >
-                  <div className={styles.suggestionContent}>
-                    <div className={styles.suggestionInfo}>
-                      <div className={styles.suggestionTitle}>Explain a Concept</div>
-                      <div className={styles.suggestionDescription}>Can you explain how machine learning works in simple terms?</div>
-                    </div>
-                  </div>
-                  <div className={styles.suggestionIconContainer}>
-                    <BookOpen className={styles.suggestionIcon} />
-                  </div>
-                </div>
-                
-                {/* Draft Content */}
-                <div 
-                  className={styles.suggestionCard} 
-                  onClick={() => sendMessage(messageSuggestions[2].text)}
-                >
-                  <div className={styles.suggestionContent}>
-                    <div className={styles.suggestionInfo}>
-                      <div className={styles.suggestionTitle}>Draft Content</div>
-                      <div className={styles.suggestionDescription}>Help me write a professional email to reschedule a business meeting.</div>
-                    </div>
-                  </div>
-                  <div className={styles.suggestionIconContainer}>
-                    <Code className={styles.suggestionIcon} />
-                  </div>
-                </div>
-                
-                {/* Problem Solving */}
-                <div 
-                  className={styles.suggestionCard} 
-                  onClick={() => sendMessage(messageSuggestions[3].text)}
-                >
-                  <div className={styles.suggestionContent}>
-                    <div className={styles.suggestionInfo}>
-                      <div className={styles.suggestionTitle}>Problem Solving</div>
-                      <div className={styles.suggestionDescription}>What are some strategies for improving productivity when working from home?</div>
-                    </div>
-                  </div>
-                  <div className={styles.suggestionIconContainer}>
-                    <Archive className={styles.suggestionIcon} />
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           ) : (

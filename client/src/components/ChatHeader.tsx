@@ -59,68 +59,63 @@ export default function ChatHeader({ onToggleSettings, onClearChat, messages = [
   };
   
   return (
-    <header className="bg-white/95 backdrop-blur-md border-b border-gray-100 px-6 py-3 flex items-center justify-center shadow-sm sticky top-0 z-10">
+    <header className="bg-white/95 backdrop-blur-md border-b border-gray-100 px-3 sm:px-6 py-3 flex items-center justify-center shadow-sm sticky top-0 z-10">
       <div className="w-full max-w-4xl flex items-center justify-between">
-        <div className="flex items-center space-x-3">
-          <div className="bg-indigo-600 p-2 rounded-full">
+        <div className="flex items-center space-x-2 sm:space-x-3">
+          <div className="bg-indigo-600 p-1.5 sm:p-2 rounded-full">
             <BrainCircuit 
-              className="text-white h-5 w-5" 
+              className="text-white h-4 w-4 sm:h-5 sm:w-5" 
             />
           </div>
           <div>
-            <h1 className="font-bold text-xl text-indigo-600">
+            <h1 className="font-bold text-lg sm:text-xl text-indigo-600">
               Abhimanyu AI
             </h1>
-            <div className="flex items-center space-x-2 mt-0">
-              <span className="text-xs text-gray-500">Just now</span>
+            <p className="text-[10px] sm:text-xs text-gray-600 font-medium italic">Ancient Wisdom, Modern Intelligence</p>
+            <div className="flex items-center space-x-2 mt-0.5">
             </div>
           </div>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center gap-1 sm:gap-2">
           <Button
             variant="outline"
             size="sm"
             onClick={onToggleSettings}
-            className="flex items-center space-x-1 rounded-lg border-gray-200 shadow-sm hover:bg-gray-50 hover:shadow transition-all duration-300"
+            className="flex items-center px-2 sm:px-3 h-8 rounded-lg border-gray-200 shadow-sm hover:bg-gray-50 hover:shadow transition-all duration-300"
           >
             <Sliders className="h-4 w-4 text-primary" />
-            <span>Settings</span>
+            <span className="hidden sm:inline ml-1">Settings</span>
           </Button>
           
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button 
-                variant="outline" 
-                size="icon"
-                className="rounded-lg border-gray-200 shadow-sm hover:bg-gray-50 hover:shadow transition-all duration-300"
-              >
-                <MoreVertical className="h-4 w-4 text-gray-600" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="bg-white/95 backdrop-blur-sm border border-gray-200 shadow-lg">
-              <DropdownMenuItem 
-                className="flex items-center cursor-pointer" 
-                onClick={exportChat}
-              >
-                <Download className="mr-2 h-4 w-4 text-primary" />
-                <span>Export Chat</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem 
-                className="flex items-center cursor-pointer" 
-                onClick={shareChat}
-              >
-                <Share2 className="mr-2 h-4 w-4 text-accent" />
-                <span>Share Chat</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem 
-                className="flex items-center cursor-pointer text-red-500 hover:text-red-600" 
-                onClick={onClearChat}
-              >
-                <Trash2 className="mr-2 h-4 w-4" />
-                <span>Clear Chat</span>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={exportChat}
+            className="flex items-center px-2 sm:px-3 h-8 rounded-lg border-gray-200 shadow-sm hover:bg-gray-50 hover:shadow transition-all duration-300"
+          >
+            <Download className="h-4 w-4 text-primary" />
+            <span className="hidden sm:inline ml-1">Export Chat</span>
+          </Button>
+          
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={shareChat}
+            className="flex items-center px-2 sm:px-3 h-8 rounded-lg border-gray-200 shadow-sm hover:bg-gray-50 hover:shadow transition-all duration-300"
+          >
+            <Share2 className="h-4 w-4 text-accent" />
+            <span className="hidden sm:inline ml-1">Share Chat</span>
+          </Button>
+          
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={onClearChat}
+            className="flex items-center px-2 sm:px-3 h-8 rounded-lg border-gray-200 shadow-sm hover:bg-gray-50 hover:shadow transition-all duration-300 text-red-500 hover:text-red-600"
+          >
+            <Trash2 className="h-4 w-4" />
+            <span className="hidden sm:inline ml-1">Clear Chat</span>
+          </Button>
         </div>
       </div>
     </header>
