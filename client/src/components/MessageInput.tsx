@@ -27,7 +27,7 @@ export default function MessageInput({ onSendMessage, isGenerating }: MessageInp
   useEffect(() => {
     // Check if browser supports the Web Speech API
     const SpeechRecognition = window.SpeechRecognition || 
-                             (window as any).webkitSpeechRecognition;
+                             window.webkitSpeechRecognition;
     
     if (SpeechRecognition) {
       setIsVoiceSupported(true);
@@ -40,11 +40,11 @@ export default function MessageInput({ onSendMessage, isGenerating }: MessageInp
       recognition.lang = 'en-US';
       
       // Handle speech recognition results
-      recognition.onresult = (event: any) => {
+      recognition.onresult = (event: SpeechRecognitionEvent) => {
         // Get the latest result
         const transcript = Array.from(event.results)
-          .map((result: any) => result[0])
-          .map((result: any) => result.transcript)
+          .map(result => result[0])
+          .map(result => result.transcript)
           .join('');
         
         setMessage(transcript);
@@ -63,7 +63,7 @@ export default function MessageInput({ onSendMessage, isGenerating }: MessageInp
       };
       
       // Handle speech recognition errors
-      recognition.onerror = (event: any) => {
+      recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
         console.error('Speech recognition error', event.error);
         setIsListening(false);
         
