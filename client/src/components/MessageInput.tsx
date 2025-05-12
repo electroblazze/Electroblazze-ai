@@ -63,7 +63,7 @@ export default function MessageInput({ onSendMessage, isGenerating }: MessageInp
               onKeyDown={handleKeyDown}
               onFocus={() => setIsFocused(true)}
               onBlur={() => setIsFocused(false)}
-              placeholder={isGenerating ? "Nemotron is thinking..." : "Ask Nemotron Ultra anything..."}
+              placeholder={isGenerating ? "Abhimanyu is thinking..." : "Ask Abhimanyu anything..."}
               disabled={isGenerating}
               className={cn(
                 "w-full px-5 py-3 pr-16 rounded-2xl focus:outline-none resize-none transition-colors",
@@ -128,7 +128,7 @@ export default function MessageInput({ onSendMessage, isGenerating }: MessageInp
         
         <div className="flex items-center justify-center mt-3 space-x-1 text-xs text-muted-foreground">
           <Sparkles className="h-3 w-3 text-accent" />
-          <span>Powered by NVIDIA's Llama 3.1 Nemotron Ultra (253B) Advanced AI Model</span>
+          <span>powered by electroblazze • Llama 3.1 Nemotron Ultra (253B)</span>
         </div>
       </div>
     </div>

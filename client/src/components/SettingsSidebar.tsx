@@ -53,7 +53,7 @@ export default function SettingsSidebar({
             <div className="flex items-center space-x-2">
               <BrainCircuit className="h-5 w-5 text-primary" />
               <h2 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary animate-gradient">
-                AI Model Settings
+                Abhimanyu AI Settings
               </h2>
             </div>
             <Button 
@@ -66,7 +66,7 @@ export default function SettingsSidebar({
             </Button>
           </div>
           <p className="text-sm text-muted-foreground mt-1">
-            Customize how Nemotron Ultra generates responses
+            Customize how Abhimanyu AI generates responses
           </p>
           
           <div className="flex mt-4 border rounded-lg overflow-hidden">
@@ -288,7 +288,7 @@ export default function SettingsSidebar({
             <span>Reset to Defaults</span>
           </Button>
           <p className="text-xs text-muted-foreground mt-3 text-center">
-            Powered by NVIDIA's Llama 3.1 Nemotron Ultra (253B)
+            powered by electroblazze • Llama 3.1 Nemotron Ultra (253B)
           </p>
         </div>
       </div>

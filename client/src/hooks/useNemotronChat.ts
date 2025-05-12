@@ -15,13 +15,13 @@ const DEFAULT_SETTINGS: ModelSettings = {
 // Initial system message
 const SYSTEM_MESSAGE: Message = {
   role: 'system',
-  content: 'You are a helpful AI assistant powered by NVIDIA\'s Llama 3.1 Nemotron Ultra model.'
+  content: 'You are Abhimanyu AI, a helpful assistant powered by electroblazze using Llama 3.1 Nemotron Ultra model.'
 };
 
 // Initial welcome message
 const WELCOME_MESSAGE: Message = {
   role: 'assistant',
-  content: 'Hello! I\'m your AI assistant powered by NVIDIA\'s Llama 3.1 Nemotron Ultra model. How can I help you today?'
+  content: 'Hello! I\'m Abhimanyu AI, powered by electroblazze. I\'m built on NVIDIA\'s Llama 3.1 Nemotron Ultra model. How can I help you today?'
 };
 
 export function useNemotronChat() {

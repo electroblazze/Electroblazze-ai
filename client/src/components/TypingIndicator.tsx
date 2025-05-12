@@ -18,7 +18,7 @@ export default function TypingIndicator() {
           </div>
         </div>
         <div className="flex items-center mt-2 ml-2 space-x-1">
-          <span className="text-xs font-medium bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary animate-gradient">Nemotron Ultra</span>
+          <span className="text-xs font-medium bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary animate-gradient">Abhimanyu AI</span>
           <span className="inline-block w-1 h-1 rounded-full bg-muted-foreground"></span>
           <span className="text-xs text-muted-foreground">Thinking...</span>
         </div>

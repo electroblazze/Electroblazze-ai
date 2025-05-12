@@ -17,20 +17,20 @@ export default function ChatHeader({ onToggleSettings, onClearChat }: ChatHeader
         </div>
         <div>
           <h1 className="font-extrabold text-2xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary animate-gradient">
-            NemoChat
+            Abhimanyu
           </h1>
           <div className="flex items-center space-x-2 mt-0.5">
             <div className="relative">
               <span className="bg-gradient-to-r from-accent to-primary text-white text-xs px-2.5 py-0.5 rounded-full font-semibold inline-flex items-center">
                 <Sparkles className="h-3 w-3 mr-1 animate-pulse" />
-                Ultra
+                AI
               </span>
               <span className="absolute -top-1 -right-1 flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
               </span>
             </div>
-            <span className="text-xs text-muted-foreground">Powered by Llama 3.1 Nemotron (253B)</span>
+            <span className="text-xs text-muted-foreground">powered by electroblazze</span>
           </div>
         </div>
       </div>
